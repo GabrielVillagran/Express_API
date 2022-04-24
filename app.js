@@ -1,5 +1,4 @@
 // se va a trabajar con objetos express
-const { response } = require('express')
 const express = require('express')
     // creacion de app express
 const app = express()
@@ -11,7 +10,7 @@ const port = 3000
 // metodos http => GET, POST, PUT, DELETE
 // metodo GET
 app.get('/v1/explorers', (req, res) => {
-    console.log(`GET Explorers V1 API ${new Date()}`)
+    console.log(`API Explorers GET all request ${new Date()}`)
 
     // lista de explorers
     const explorer = { id: 1, name: "ExplorerZ" } //objeto JS
@@ -23,48 +22,53 @@ app.get('/v1/explorers', (req, res) => {
     //se realiza un metodo html para poder realizar un request
     // como se esta realizando un metodo get se debe de obtener un codigo html para indicar el estado de la peticion
     // HTTP CODE STATUS: 200 => correcto
-    response.status(200).json(explorer)
+    res.status(200).json(explorer)
 })
 
 // se realiza un query pattern para buscar un id 
 app.get('/v1/explorers:id', (req, res) => {
-    console.log(`GET Explorers by ID V1 API ${new Date()}`)
+    console.log(`API Explorers GET all request ${new Date()}`)
+    console.log(`API Explorers GET all request by ID ${req.params.id()}`)
 
     // lista de explorers
-    const explorer = { id: 1, name: "ExplorerZ" } //objeto JS
+    const explorer0 = { id: 1, name: "ExplorerZ" } //objeto JS
     const explorer1 = { id: 2, name: "ExplorerA" } //objeto JS
     const explorer2 = { id: 3, name: "ExplorerB" } //objeto JS
     const explorer3 = { id: 4, name: "ExplorerC" } //objeto JS
-    const explorers = [explorer, explorer1, explorer2, explorer3]
+    const explorer = { id: 1, name: "ExplorerZ" }
 
     //se realiza un metodo html para poder realizar un request
     // como se esta realizando un metodo get se debe de obtener un codigo html para indicar el estado de la peticion
     // HTTP CODE STATUS: 200 => correcto
-    response.status(200).json(explorer)
+    res.status(200).json(explorer)
 })
 
 // metodo POST
 app.post('/V1/explorers/', (req, res) => {
-    console.log(`POST Explorers V1 API ${new Date()}`)
-        // se agrego la logica para persistir
-    console.log(req.body) //parametros del request
+    console.log(`API Explorer POST request ${new Date()}`)
+
+    const requestBody = req.body //parametros del cliente
     res.status(201).json({ message: "creado exsitosamente" })
 })
 
 // metodo PUT
 app.put('/V1/explorers/:id', (req, res) => {
-    console.log(`PUT Explorers V1 API ${new Date()}`)
-        // se agrego la logica para persistir
-    console.log(req.body) //parametros a actualizar
-    console.log(req.params.id) //query params
-    res.status(201).json({ message: "Actualizado exsitosamente" })
+    console.log(`API Explorers PUT request ${new Date()}`)
+
+    const requestBody = req.body //parametros del cliente
+    res.status(200).json({ message: "Actualizado exsitosamente" })
 })
 
 // metodo delete
 app.delete('/V1/explorers/:id', (req, res) => {
-    console.log(`DELETE Explorers V1 API ${new Date()}`)
-        // se debe agregar la logica para la eliminacion del registro enviado
-    res.status(201).json({ message: "Eliminado exsitosamente" })
+    console.log(`API Explorers DELETE request ${new Date()}`)
+    console.log(`DELETE Explorers by ID ${req.params.id()}`)
+
+    // parametros del cliente
+    const requestBody = req.body
+
+    // se debe agregar la logica para la eliminacion del registro enviado
+    res.status(200).json({ message: "Eliminado exsitosamente" })
 })
 
 // inicializacion de la app
