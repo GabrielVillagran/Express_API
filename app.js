@@ -7,7 +7,7 @@ app.use(express.json()) // usaremos json para trabajar
 const port = 3000
 
 // creacion de routes
-app.get('/launchX', (req, res) => {
+app.get('/', (req, res) => {
     // respuesta que se tendra
     res.send("Hola, Bienvenido a LaunchX");
 })
