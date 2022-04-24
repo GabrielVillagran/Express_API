@@ -51,6 +51,22 @@ app.post('/V1/explorers/', (req, res) => {
     res.status(201).json({ message: "creado exsitosamente" })
 })
 
+// metodo PUT
+app.put('/V1/explorers/:id', (req, res) => {
+    console.log(`PUT Explorers V1 API ${new Date()}`)
+        // se agrego la logica para persistir
+    console.log(req.body) //parametros a actualizar
+    console.log(req.params.id) //query params
+    res.status(201).json({ message: "Actualizado exsitosamente" })
+})
+
+// metodo delete
+app.delete('/V1/explorers/:id', (req, res) => {
+    console.log(`DELETE Explorers V1 API ${new Date()}`)
+        // se debe agregar la logica para la eliminacion del registro enviado
+    res.status(201).json({ message: "Eliminado exsitosamente" })
+})
+
 // inicializacion de la app
 app.listen(port, () => {
     console.log('app is running!!!!')
